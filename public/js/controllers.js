@@ -72,6 +72,41 @@ angular.module('myApp.controllers', []).
     });
 
   }]).
+  controller('BeerEditController', ['$scope', '$http', '$routeParams',
+    function ($scope, $http, $routeParams) {
+    $scope.msg = '';
+
+    var id = $routeParams.id;
+    var url = '/api/beers/'+id; 
+
+    $http({
+      method: 'GET',
+      url: url
+    }).
+    success(function (data, status, headers, config) {
+      $scope.beer = data;
+      $scope.msg = 'Consulta completa!';
+    }).
+    error(function (data, status, headers, config) {
+      $scope.msg = 'Error!';
+    });
+    
+    $scope.save = function(entity){
+      $http({
+        method: 'PUT',
+        url: url,
+        data: entity
+      }).
+      success(function (data, status, headers, config) {
+        $scope.beer = entity;
+        $scope.msg = 'Alteração da cerveja '+entity.name+ ' completa!';
+      }).
+      error(function (data, status, headers, config) {
+        $scope.msg = 'Error!';
+      });
+    }
+
+  }]).
   controller('MyCtrl1', function ($scope) {
     // write Ctrl here
 

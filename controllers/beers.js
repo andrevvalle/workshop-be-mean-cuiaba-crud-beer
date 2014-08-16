@@ -47,6 +47,10 @@ var _beer = {
   update: function(req, res){
     var query = {_id: req.params.id };
     var mod = req.body;
+
+    // removendo o _id do objeto para ser salvo
+    delete mod._id;
+
     Model.update(query, mod, function (err, data) {
       if (err){
         console.log('Erro: ', err);          
