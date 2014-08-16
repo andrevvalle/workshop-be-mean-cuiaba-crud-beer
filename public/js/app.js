@@ -26,6 +26,10 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'expose/beers/create',
       controller: 'BeerCreateController'
     }).
+    when('/beers/:id', {
+      templateUrl: 'expose/beers/show',
+      controller: 'BeerShowController'
+    }).
     otherwise({
       redirectTo: '/view1'
     });

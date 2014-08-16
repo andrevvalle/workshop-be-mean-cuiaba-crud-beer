@@ -34,3 +34,6 @@ label {
   text-align: right;
   margin-right: 10px;
 }
+.beer-label {
+  font-weight: bold;
+}

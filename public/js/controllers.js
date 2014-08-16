@@ -53,6 +53,25 @@ angular.module('myApp.controllers', []).
     }
 
   }]).
+  controller('BeerShowController', ['$scope', '$http', '$routeParams',
+    function ($scope, $http, $routeParams) {
+
+    var id = $routeParams.id;
+    var url = '/api/beers/'+id; 
+
+    $http({
+      method: 'GET',
+      url: url
+    }).
+    success(function (data, status, headers, config) {
+      $scope.beer = data;
+      $scope.msg = 'Consulta completa!';
+    }).
+    error(function (data, status, headers, config) {
+      $scope.msg = 'Error!';
+    });
+
+  }]).
   controller('MyCtrl1', function ($scope) {
     // write Ctrl here
 
