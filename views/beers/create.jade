@@ -30,7 +30,8 @@ form.half
     button(data-ng-click='create(beer)') CADASTRAR
 
 ul.half
-  li(data-ng-repeat='beer in beers')
+  li(data-ng-repeat='beer in beers',
+      ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}")
     a(data-ng-href='/beers/{{ beer._id }}') 
       | {{ beer.name }} - 
       | {{ beer.price }} 
