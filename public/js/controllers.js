@@ -32,6 +32,29 @@ angular.module('myApp.controllers', []).
       $scope.msg = 'Error!';
     });
 
+    $scope.remove = function(entity){
+      console.log('Remove: ', entity._id);
+
+      var url = '/api/beers/'+entity._id
+      var method = 'DELETE';
+      
+      if(confirm('Gostaria mesmo de deletar a cerveja ' + entity.name + '?')){
+
+        $http({
+          method: method,
+          url: url
+        }).
+        success(function (data, status, headers, config) {
+          $scope.msg = 'Exclusão da cerveja '+entity.name+ ' completa!';
+          // Remover cerveja do $scope.beers
+        }).
+        error(function (data, status, headers, config) {
+          $scope.msg = 'Error!';
+        }); 
+      }
+      
+    }
+
   }]).
   controller('BeerCreateController', ['$scope', '$http',
     function ($scope, $http) {
@@ -90,7 +113,7 @@ angular.module('myApp.controllers', []).
     error(function (data, status, headers, config) {
       $scope.msg = 'Error!';
     });
-    
+
     $scope.save = function(entity){
       $http({
         method: 'PUT',
