@@ -1,13 +1,13 @@
 extends layout
 
 block body
-  div(data-ng-controller='AppCtrl')
+  .container(data-ng-controller='AppCtrl')
     h2 Workshop {{name}}
     ul.menu
       li
-        a(href='view1') view1
+        a(href='/beers') Listar
       li
-        a(href='view2') view2
+        a(href='/beers/create') Cadastrar
 
     div(data-ng-view)
 
