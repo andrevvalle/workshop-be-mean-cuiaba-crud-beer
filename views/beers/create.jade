@@ -1,7 +1,7 @@
 h2 Cadastro de cervejas
 p.message {{ msg }}
 
-form()
+form.half
   .form-group
     label(for='name') Name:
     input(type='text', name='name',
@@ -29,3 +29,8 @@ form()
   .form-group
     button(data-ng-click='create(beer)') CADASTRAR
 
+ul.half
+  li(data-ng-repeat='beer in beers')
+    a(data-ng-href='/beers/{{ beer._id }}') 
+      | {{ beer.name }} - 
+      | {{ beer.price }} 

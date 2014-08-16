@@ -47,6 +47,8 @@ angular.module('myApp.controllers', []).
         success(function (data, status, headers, config) {
           $scope.msg = 'Exclusão da cerveja '+entity.name+ ' completa!';
           // Remover cerveja do $scope.beers
+          var index = $scope.beers.indexOf(entity);
+          $scope.beers.splice(index, 1);
         }).
         error(function (data, status, headers, config) {
           $scope.msg = 'Error!';
@@ -60,6 +62,17 @@ angular.module('myApp.controllers', []).
     function ($scope, $http) {
     $scope.msg = '';
 
+    $http({
+      method: 'GET',
+      url: '/api/beers'
+    }).
+    success(function (data, status, headers, config) {
+      $scope.beers = data;
+    }).
+    error(function (data, status, headers, config) {
+      $scope.msg = 'Error!';
+    });
+
     $scope.create = function(entity){
       $http({
         method: 'POST',
@@ -67,7 +80,7 @@ angular.module('myApp.controllers', []).
         data: entity
       }).
       success(function (data, status, headers, config) {
-        $scope.beer = data;
+        $scope.beers.push(entity);
         $scope.msg = 'Cadastro da cerveja '+data.name+ ' completa!';
       }).
       error(function (data, status, headers, config) {

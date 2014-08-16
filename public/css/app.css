@@ -37,3 +37,11 @@ label {
 .beer-label {
   font-weight: bold;
 }
+
+.half {
+  width: 45%;
+  margin: 0 1%;
+  display: inline-block;
+  vertical-align: top;
+  
+}
