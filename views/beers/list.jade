@@ -1,0 +1,15 @@
+h2 Listagem das cervejas
+p.message {{ msg }}
+
+ul
+  li(data-ng-repeat='beer in beers')
+    a(data-ng-href='/beers/{{ beer._id }}') 
+      | {{ beer.name }} - 
+      | {{ beer.price }} 
+    | - 
+    a(data-ng-href='/beers/{{ beer._id }}/edit')
+      | ALTERAR
+    | - 
+    a(data-ng-href='/beers/{{ beer._id }}/remove')
+      | REMOVER
+
